@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.svm import SVC
 import tkinter as tk 
+from joblib import load
 
 
 
@@ -15,8 +16,7 @@ class app:
         self.X = self.df[self.df.columns[:-1]].values
         self.y = self.df[self.df.columns[-1]].values
         X_train, X_test, y_train, y_test = train_test_split(self.X, self.y)
-        self.svm_model = SVC()
-        self.svm_model.fit(X_train, y_train)
+        self.svm_model = load("model.joblib")
         self.configuracao()
         self.texto(self.janela)
 
